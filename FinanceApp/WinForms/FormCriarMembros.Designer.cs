@@ -33,7 +33,7 @@ partial class FormCriarMembros
         txtNomeCompleto = new TextBox();
         label2 = new Label();
         label3 = new Label();
-        maskedTextBox1 = new MaskedTextBox();
+        txtDataNascimento = new MaskedTextBox();
         cbGrauParentesco = new ComboBox();
         btnSalvarNovoMembro = new Button();
         SuspendLayout();
@@ -91,15 +91,15 @@ partial class FormCriarMembros
         label3.Text = "Grau de parentesco";
         label3.TextAlign = ContentAlignment.TopCenter;
         // 
-        // maskedTextBox1
+        // txtDataNascimento
         // 
-        maskedTextBox1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        maskedTextBox1.Location = new Point(25, 205);
-        maskedTextBox1.Mask = "00/00/0000";
-        maskedTextBox1.Name = "maskedTextBox1";
-        maskedTextBox1.Size = new Size(465, 29);
-        maskedTextBox1.TabIndex = 2;
-        maskedTextBox1.ValidatingType = typeof(DateTime);
+        txtDataNascimento.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        txtDataNascimento.Location = new Point(25, 205);
+        txtDataNascimento.Mask = "00/00/0000";
+        txtDataNascimento.Name = "txtDataNascimento";
+        txtDataNascimento.Size = new Size(465, 29);
+        txtDataNascimento.TabIndex = 2;
+        txtDataNascimento.ValidatingType = typeof(DateTime);
         // 
         // cbGrauParentesco
         // 
@@ -132,7 +132,7 @@ partial class FormCriarMembros
         ClientSize = new Size(515, 450);
         Controls.Add(btnSalvarNovoMembro);
         Controls.Add(cbGrauParentesco);
-        Controls.Add(maskedTextBox1);
+        Controls.Add(txtDataNascimento);
         Controls.Add(label3);
         Controls.Add(label2);
         Controls.Add(txtNomeCompleto);
@@ -151,7 +151,7 @@ partial class FormCriarMembros
     private TextBox txtNomeCompleto;
     private Label label2;
     private Label label3;
-    private MaskedTextBox maskedTextBox1;
+    private MaskedTextBox txtDataNascimento;
     private ComboBox cbGrauParentesco;
     private Button btnSalvarNovoMembro;
 }

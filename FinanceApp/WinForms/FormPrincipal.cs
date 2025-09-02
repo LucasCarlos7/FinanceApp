@@ -1,12 +1,16 @@
 using FinanceApp.WinForms;
 
+using Microsoft.Extensions.DependencyInjection;
+
 namespace FinanceApp;
 
 public partial class FormPrincipal : Form
 {
-    public FormPrincipal()
+    private readonly IServiceProvider _serviceProvider;
+    public FormPrincipal(IServiceProvider serviceProvider)
     {
         InitializeComponent();
+        _serviceProvider = serviceProvider;
     }
 
     private void btnAdicionarConta_Click(object sender, EventArgs e)
@@ -30,7 +34,7 @@ public partial class FormPrincipal : Form
     }
 
     private void btnCriarMembros_Click(object sender, EventArgs e) {
-        using (var form = new FormCriarMembros())
+        using (var form = _serviceProvider.GetRequiredService<FormCriarMembros>())
         {
             form.ShowDialog();
         }

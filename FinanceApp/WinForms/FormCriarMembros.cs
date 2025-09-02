@@ -1,23 +1,37 @@
 ﻿using FinanceApp.Core.Enums;
+using FinanceApp.Core.InputModels;
+using FinanceApp.Core.Interfaces.Services;
 using FinanceApp.Shared.Helpers;
+
 using System.Data;
 
 namespace FinanceApp.WinForms;
 
 public partial class FormCriarMembros : Form
 {
-    public FormCriarMembros()
+    private readonly IMembrosService _membrosService;
+    public FormCriarMembros(IMembrosService membrosService)
     {
         InitializeComponent();
         Load += FormCriarMembros_Load;
+        _membrosService = membrosService;
     }
 
-    private void btnSalvarNovoMembro_Click(object sender, EventArgs e)
+    private async void btnSalvarNovoMembro_Click(object sender, EventArgs e)
     {
+        var novoMembro = new MembrosInputModel();
 
+        novoMembro.NomeCompleto = txtNomeCompleto.Text;
+        novoMembro.DataNascimento = DateTime.Parse(txtDataNascimento.Text).Date;
+        novoMembro.GrauParentesco = (GrauParentescoEnum)cbGrauParentesco.SelectedValue;
+
+        await _membrosService.InserirAsync(novoMembro);
+
+        MessageBox.Show("Membro salvo com sucesso!");
     }
 
-    private void FormCriarMembros_Load(object sender, EventArgs e) {
+    private void FormCriarMembros_Load(object sender, EventArgs e)
+    {
         cbGrauParentesco.DataSource = Enum.GetValues(typeof(GrauParentescoEnum))
             .Cast<GrauParentescoEnum>()
             .Select(e => new { Valor = e, Texto = e.GetDescription() })
